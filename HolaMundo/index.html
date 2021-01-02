@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+    <div id='app'>
+        <h1>{{ mayusculasTexto }}</h1>
+
+        <h2 class="bg-dark"
+            :class="colorCantidad"
+        >
+            {{ 'Mi saldo disponible es: ' + cantidad}}
+        </h2>
+        <a :href="enlace">Ir al enlace</a>
+
+        <h2 v-if="estado">Cuenta activa</h2>
+        <h2 v-else="estado">Cuenta desactivada</h2>
+        
+        <h2 v-if="cantidad > 500">Cantidad : {{cantidad}}</h2>
+        <h2 v-else-if="cantidad <= 500 && cantidad > 0">
+            Cantidad: 
+            <span style="color:red">{{cantidad}}</span>
+        </h2>
+        <h2 v-else="cantidad <= 500 && cantidad > 0">
+            Sin cantidad: 
+            <span style="color:red">{{cantidad}}</span>
+        </h2>
+        
+        <hr>
+        <h2>Mis servicios disponibles</h2>
+        <ul>
+            <li v-for:='(item, index) in servicios':key="index">{{index + 1}} - {{item}}</li>
+        </ul>
+
+        <hr>
+
+        <button @click="agregarSaldo">Agregar saldo</button>
+        
+        <hr>
+        <button @click="quitarSaldo(100)" :disabled="desactivar">Quitar saldo</button>
+        
+        <footer-banco 
+            :valor = "cantidad"
+            fecha = "Septiembre de 2020"
+        />
+
+    </div>
+
+
+    <script src="main.js">    </script>
+    <script src="components/Footer.js"></script>
+    <script>
+        const mountedApp = app.mount('#app');
+    </script>
+</body>
+</html>
+
