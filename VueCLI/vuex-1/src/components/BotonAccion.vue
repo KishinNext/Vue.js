@@ -1,5 +1,6 @@
 <template>
-  <button @click="accionBoton({texto:texto, numero:numero})">{{textoBoton}}</button>
+  <input type="text" v-model="numero">
+  <button @click="accionBoton({texto:texto, numero:parseInt(numero)})">{{textoBoton}}</button>
 </template>
 
 <script>
@@ -7,7 +8,7 @@ import {mapActions} from 'vuex'
 export default {
     data(){
         return{
-            numero : 40
+            numero : ''
         }
     },
     props:{
